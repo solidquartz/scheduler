@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -202,7 +202,7 @@ storiesOf("Appointment", module)
   .add("Edit", () => (
     <Form
       student="Nozomi Tohjou"
-      interviewer="2"
+      interviewer={2}
       interviewers={interviewers}
       onSave={action("onSave")}
       onCancel={action("onCancel")}
@@ -215,3 +215,9 @@ storiesOf("Appointment", module)
       onCancel={action("onCancel")}
     />
   ))
+  .add("Appointment Empty", () => (
+    <Fragment>
+      <Appointment id={1} time="4pm" />
+      <Appointment time="5pm" />
+    </Fragment>
+  ));
