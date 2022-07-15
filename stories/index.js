@@ -13,8 +13,9 @@ import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
 import Appointment from "components/Appointment/index.js";
 import Header from "components/Appointment/Header.js";
-import Empty from "components/Appointment/Empty.js"
-import Show from "components/Appointment/Show.js"
+import Empty from "components/Appointment/Empty.js";
+import Show from "components/Appointment/Show.js";
+import Confirm from "components/Appointment/Confirm.js";
 
 
 //Button
@@ -34,7 +35,7 @@ storiesOf("Button", module)
     </Button>
   ));
 
-  //DayListItem
+//DayListItem
 storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -47,7 +48,7 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
   ));
 
 
-  //DayList
+//DayList
 const days = [
   {
     id: 1,
@@ -80,7 +81,7 @@ storiesOf("DayList", module)
     <DayList days={days} value={"Wednesday"} onChange={action("setDay")} />
   ));
 
-  //Interview List Item
+//Interview List Item
 const interviewer = {
   id: 1,
   name: "Sylvia Palmer",
@@ -115,7 +116,7 @@ storiesOf("InterviewerListItem", module)
     />
   ));
 
-  //Interviewer List
+//Interviewer List
 const interviewers = [
   { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
   { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
@@ -148,7 +149,7 @@ storiesOf("InterviewerList", module)
 
 //////////APPOINTMENT//////////
 
-  //Appointment & its children
+//Appointment & its children
 storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
@@ -161,8 +162,8 @@ storiesOf("Appointment", module)
   ))
   .add("Header", () => (
     <Header
-      time="12pm" 
-      />
+      time="12pm"
+    />
   ))
   .add("Empty", () => (
     <Empty
@@ -175,5 +176,12 @@ storiesOf("Appointment", module)
       interviewer={interviewer.name}
       onEdit={action("onEdit")}
       onDelete={action("onDelete")}
+    />
+  ))
+  .add("Confirm", () => (
+    <Confirm
+      message="Delete the appointment?"
+      onConfirm = { action("onConfirm") }
+      onCancel = { action("OnCancel") }
     />
   ))
