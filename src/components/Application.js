@@ -12,7 +12,6 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 export default function Application() {
 
   //state handlers//
-
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -20,9 +19,22 @@ export default function Application() {
     interviewers: {}
   });
 
+  //booking//
+  const bookInterview = (id, interview) => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({...state, appointments})
+    console.log(id, interview);
+  };
+
+  
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-
-
   const setDay = day => setState({ ...state, day });
 
 
@@ -44,11 +56,11 @@ export default function Application() {
 
 
   //components//
-
   const appointment = dailyAppointments.map((appointment) => {
 
     const interview = getInterview(state, appointment.interview)
-    const interviewers = getInterviewersForDay(state, appointment.day);
+    const interviewers = getInterviewersForDay(state, state.day);
+    console.log(interview);
     return (
       <Appointment
         key={appointment.id}
@@ -56,6 +68,7 @@ export default function Application() {
         time={appointment.time}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   });
