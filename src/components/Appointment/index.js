@@ -8,6 +8,7 @@ import Form from "./Form";
 
 
 export default function Appointment(props) {
+  console.log("from index: ", props.student, props.interviewers)
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -22,6 +23,7 @@ export default function Appointment(props) {
       interviewer
     };
     props.bookInterview(props.id, interview)
+    transition(SHOW);
   }
 
   return (
@@ -34,8 +36,8 @@ export default function Appointment(props) {
       )}
       {mode === SHOW && (
         <Show
-          student={props.student}
-          interviewer={props.interviewers}
+          student={props.interview.student}
+          interviewer={props.interview.interviewer}
         />
       )}
       {mode === CREATE && (
