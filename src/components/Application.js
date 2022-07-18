@@ -7,8 +7,8 @@ import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 
-//////
 
+//////
 export default function Application() {
 
   //state handlers//
@@ -19,8 +19,13 @@ export default function Application() {
     interviewers: {}
   });
 
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const setDay = day => setState({ ...state, day });
+
+
   //booking//
   const bookInterview = (id, interview) => {
+    //updates object from bottom to top
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -29,13 +34,14 @@ export default function Application() {
       ...state.appointments,
       [id]: appointment
     };
-    setState({...state, appointments})
-    console.log(id, interview);
+    
+    return axios.put(`/api/appointments/${id}`, {
+      interview
+    })
+      .then(() => {
+        setState({ ...state, appointments });
+      });
   };
-
-  
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
-  const setDay = day => setState({ ...state, day });
 
 
   //axios//
