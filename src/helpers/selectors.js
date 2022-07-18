@@ -24,12 +24,17 @@ export function getInterview(state, interview) {
 
 //////////
 
-export function getInterviewsForDay(state, day) {
+export function getInterviewersForDay(state, day) {
 
-  const filteredDay = state.interviewers.find(interviewers => days.interviewers === day);
+  const filteredDay = state.days.find(days => days.name === day);
+  console.log(filteredDay);
 
   if (!filteredDay) return [];
 
-  return filteredDay.appointments.map(appointmentId => state.appointments[appointmentId]);
+  const result = filteredDay.interviewers.map(InterviewersId => state.interviewers[InterviewersId]);
+
+  console.log("result: ", result);
+
+  return result;
 
 }
