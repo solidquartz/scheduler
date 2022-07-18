@@ -21,3 +21,15 @@ export function getInterview(state, interview) {
   };
 
 }
+
+//////////
+
+export function getInterviewsForDay(state, day) {
+
+  const filteredDay = state.interviewers.find(interviewers => days.interviewers === day);
+
+  if (!filteredDay) return [];
+
+  return filteredDay.appointments.map(appointmentId => state.appointments[appointmentId]);
+
+}
