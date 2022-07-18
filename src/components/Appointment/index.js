@@ -5,7 +5,6 @@ import Show from "./Show";
 import Empty from "./Empty";
 import useVisualMode from "hooks/useVisualMode.js";
 import Form from "./Form";
-import { getInterviewersForDay } from "helpers/selectors";
 
 
 export default function Appointment(props) {
@@ -23,11 +22,11 @@ export default function Appointment(props) {
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
         <Show
-          student={[]}
-          interviewer={[]}
+          student={props.student}
+          interviewer={props.interviewers}
         />
       )}
-      {mode === CREATE && <Form interviewers={[]} onCancel={back} />}
+      {mode === CREATE && <Form interviewers={props.interviewers} onCancel={back} />}
     </article>
   )
 };
