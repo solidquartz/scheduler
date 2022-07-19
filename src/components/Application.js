@@ -58,7 +58,6 @@ export default function Application() {
       });
   };
 
-
   //fetch data from API//
   const daysUrl = "http://localhost:8001/api/days";
   const appointmentsUrl = "http://localhost:8001/api/appointments";
@@ -81,7 +80,6 @@ export default function Application() {
 
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day);
-    console.log(interview);
     return (
       <Appointment
         key={appointment.id}
