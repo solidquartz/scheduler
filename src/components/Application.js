@@ -23,7 +23,7 @@ export default function Application() {
   const setDay = day => setState({ ...state, day });
 
 
-  //booking//
+  //book interview//
   const bookInterview = (id, interview) => {
     //updates object from bottom to top
     const appointment = {
@@ -34,7 +34,6 @@ export default function Application() {
       ...state.appointments,
       [id]: appointment
     };
-    
     return axios.put(`/api/appointments/${id}`, {
       interview
     })
@@ -43,20 +42,36 @@ export default function Application() {
       });
   };
 
+  //cancel interview//
+  const cancelInterview = (id, interviewer) => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return axios.delete(`/api/appointments/${id}`)
+      .then(() => {
+        setState({ ...state, appointments });
+      });
+  };
 
-  //axios//
+
+  //fetch data from API//
   const daysUrl = "http://localhost:8001/api/days";
   const appointmentsUrl = "http://localhost:8001/api/appointments";
   const interviewerURL = "http://localhost:8001/api/interviewers";
 
   useEffect(() => {
-    axios.get("/api/days")
+    axios.get("/api/days");
     Promise.all([axios.get(daysUrl), axios.get(appointmentsUrl), axios.get(interviewerURL)])
       .then(response => {
         const days = response[0].data;
         const appointments = response[1].data;
         const interviewers = response[2].data;
-        setState(prev => ({ ...prev, days, appointments, interviewers }))
+        setState(prev => ({ ...prev, days, appointments, interviewers }));
       });
   }, []);
 
@@ -64,7 +79,7 @@ export default function Application() {
   //components//
   const appointment = dailyAppointments.map((appointment) => {
 
-    const interview = getInterview(state, appointment.interview)
+    const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day);
     console.log(interview);
     return (
@@ -75,6 +90,7 @@ export default function Application() {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
