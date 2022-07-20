@@ -6,7 +6,7 @@ export default function Form(props) {
   
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState("");
 
   //resets the form
   const reset = () => {
@@ -20,6 +20,18 @@ export default function Form(props) {
     props.onCancel();
   }
 
+  //validation & error handling
+  function validate() {
+    if (student === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+    if (interviewer === null) {
+      setError("Please select an interviewer");
+      return;
+    }
+    props.onSave(student, interviewer);
+  }
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -31,28 +43,23 @@ export default function Form(props) {
             type="text"
             placeholder="Enter Student Name"
             value={student}
-            onChange={(event) => { setErrorMessage(""); setStudent(event.target.value); }}
+            onChange={(event) => { setStudent(event.target.value); }}
+            data-testid="student-name-input"
             onSave={props.onSave}
             onCancel={props.onCancel}
           />
+          <section className="appointment__validation">{error}</section>
         </form>
         <InterviewerList
           value={interviewer}
           interviewers={props.interviewers}
-          onChange={(id) => { setErrorMessage(""); setInterviewer(id); }}
+          onChange={(id) => {setInterviewer(id); }}
         />
       </section>
       <section className="appointment__card-right">
-        <p style={{ color: "red" }}>{errorMessage}</p>
         <section className="appointment__actions">
           <Button danger onClick={() => cancel()}>Cancel</Button>
-          <Button confirm onClick={() => {
-            if (student === "" || !interviewer) {
-              setErrorMessage("Please write a name and select an interviewer");
-              return;
-            }
-            props.onSave(student, interviewer);
-          }}>Save</Button>
+          <Button confirm onClick={() => {props.onSave(student, interviewer)}}>Save</Button>
         </section>
       </section>
 
