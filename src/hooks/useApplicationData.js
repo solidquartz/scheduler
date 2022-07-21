@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
 //state handlers//
 export default function useApplicationData() {
 
@@ -18,8 +17,6 @@ export default function useApplicationData() {
   //SPOTS//
   //counts the number of spots remaining for a day
   const countSpots = (day, appointments) => {
-    // let count = day.appointments.reduce((count, id) => { const appointment = appointments[id]; return !appointment.interview ? count + 1 : count; }, 0);
-
     let count = 0;
 
     for (const id of day.appointments) {
@@ -30,8 +27,6 @@ export default function useApplicationData() {
     }
     return count;
   };
-
-
 
   const updateNumberOfSpots = (state, appointments) => {
 
