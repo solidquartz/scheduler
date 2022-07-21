@@ -8,6 +8,11 @@ Using this app, a student can easily select a day and a time slot, with the "spo
 
 ## Screenshots
 
+!["The Interview Scheduler App"](https://github.com/solidquartz/scheduler/blob/master/public/docs/scheduler-1.png?raw=true | width=500)
+
+!["Saving or editing an appointment"](https://github.com/solidquartz/scheduler/blob/master/public/docs/scheduler-2.png?raw=true | width=500)
+
+!["Resizes to mobile view"](https://github.com/solidquartz/scheduler/blob/master/public/docs/scheduler-mobile.png?raw=true | height=600)
 
 ## Video
 
