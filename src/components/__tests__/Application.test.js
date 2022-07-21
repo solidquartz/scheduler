@@ -146,7 +146,7 @@ describe("Application", () => {
     fireEvent.click(getByAltText(appointment, "Add"));
 
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
-      target: { value: "JJ McNasty" }
+      target: { value: "Laura Palmer" }
     });
 
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
@@ -162,12 +162,11 @@ describe("Application", () => {
 
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
   });
-  
+
 
 
   ////////////////////////////////////////////////
   it("shows the save error when failing to delete an appointment", async () => {
-    // who mocks the mockmen
     axios.delete.mockRejectedValueOnce();
 
     const { container } = render(<Application />);
