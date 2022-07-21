@@ -23,6 +23,10 @@ Resizes to mobile view
 ## Video
 
 
+https://user-images.githubusercontent.com/13792069/180141188-07a34a14-0915-424b-ad85-70fecee5a167.mov
+
+A video demonstration of my project in action. API error messages are shown in this video with the help of a test server.
+
 ## Setup
 
 Install dependencies with `npm install`.
