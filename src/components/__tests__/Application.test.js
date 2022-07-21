@@ -164,7 +164,6 @@ describe("Application", () => {
   });
 
 
-
   ////////////////////////////////////////////////
   it("shows the save error when failing to delete an appointment", async () => {
     axios.delete.mockRejectedValueOnce();
