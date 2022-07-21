@@ -30,6 +30,7 @@ export default function Form(props) {
       setError("Please select an interviewer");
       return;
     }
+    setError("");
     props.onSave(student, interviewer);
   }
 
@@ -43,23 +44,21 @@ export default function Form(props) {
             type="text"
             placeholder="Enter Student Name"
             value={student}
-            onChange={(event) => { setStudent(event.target.value); }}
+            onChange={(event) => { setError(""); setStudent(event.target.value) }}
             data-testid="student-name-input"
-            onSave={props.onSave}
-            onCancel={props.onCancel}
           />
           <section className="appointment__validation">{error}</section>
         </form>
         <InterviewerList
           value={interviewer}
           interviewers={props.interviewers}
-          onChange={(id) => {setInterviewer(id); }}
+          onChange={(id) => { setError(""); setInterviewer(id); }}
         />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={() => cancel()}>Cancel</Button>
-          <Button confirm onClick={() => {props.onSave(student, interviewer)}}>Save</Button>
+          <Button confirm onClick={() => {validate(student, interviewer)}}>Save</Button>
         </section>
       </section>
 

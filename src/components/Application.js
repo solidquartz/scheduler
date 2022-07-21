@@ -13,8 +13,6 @@ export default function Application() {
     setDay,
     bookInterview,
     cancelInterview,
-    countSpots,
-    updateNumberOfSpots
   } = useApplicationData();
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);

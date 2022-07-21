@@ -88,9 +88,9 @@ export default function useApplicationData() {
 
 
   //fetch data from API//
-  const daysUrl = "http://localhost:8001/api/days";
-  const appointmentsUrl = "http://localhost:8001/api/appointments";
-  const interviewerURL = "http://localhost:8001/api/interviewers";
+  const daysUrl = "/api/days";
+  const appointmentsUrl = "/api/appointments";
+  const interviewerURL = "/api/interviewers";
 
   useEffect(() => {
     axios.get("/api/days");

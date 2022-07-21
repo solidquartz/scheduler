@@ -23,7 +23,7 @@ export default function DayListItem(props) {
 
 
   return (
-    <li className={dayClass}  onClick={() => props.setDay(props.name)}selected={props.selected}>
+    <li className={dayClass} data-testid="day" onClick={() => props.setDay(props.name)}selected={props.selected}>
       <h2>{props.name}</h2>
       <h3>{formatSpots(props)}</h3>
     </li>
